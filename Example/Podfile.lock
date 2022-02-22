@@ -1,0 +1,16 @@
+PODS:
+  - KKIntroduceView (1.0.0)
+
+DEPENDENCIES:
+  - KKIntroduceView (from `../`)
+
+EXTERNAL SOURCES:
+  KKIntroduceView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KKIntroduceView: 929e66e524ab9b3a79ec0a0171dfec2b45e8d462
+
+PODFILE CHECKSUM: e09d3e61ff1b0ff036167ad7408fb141f8f6ad2b
+
+COCOAPODS: 1.11.2

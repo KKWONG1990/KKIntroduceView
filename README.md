@@ -22,7 +22,7 @@ pod 'KKIntroduceView'
 
 ## Author
 
-kkwong90@163.com, kkwong90@163.com
+KKWONG, kkwong90@163.com
 
 ## License
 

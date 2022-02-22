@@ -37,9 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		32B11913E6268C4A5F29F963 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		32B11913E6268C4A5F29F963 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4DBB26DA1191D516424EBBFF /* Pods-KKIntroduceView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKIntroduceView_Example.debug.xcconfig"; path = "Target Support Files/Pods-KKIntroduceView_Example/Pods-KKIntroduceView_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		52515F6ACC7C921A6A670819 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		52515F6ACC7C921A6A670819 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* KKIntroduceView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKIntroduceView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,7 +65,7 @@
 		92EE7CD015EF76558C5895EC /* Pods-KKIntroduceView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKIntroduceView_Example.release.xcconfig"; path = "Target Support Files/Pods-KKIntroduceView_Example/Pods-KKIntroduceView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		97F66A8456DBA6CCF9FC7E95 /* Pods_KKIntroduceView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KKIntroduceView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B03AADEB635F1D4CCCCC334 /* Pods-KKIntroduceView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKIntroduceView_Tests.debug.xcconfig"; path = "Target Support Files/Pods-KKIntroduceView_Tests/Pods-KKIntroduceView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		AABEBB7C32C3815811F35605 /* KKIntroduceView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = KKIntroduceView.podspec; path = ../KKIntroduceView.podspec; sourceTree = "<group>"; };
+		AABEBB7C32C3815811F35605 /* KKIntroduceView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KKIntroduceView.podspec; path = ../KKIntroduceView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E137453EDC81D72B22562671 /* Pods_KKIntroduceView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KKIntroduceView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -193,7 +193,6 @@
 				9B03AADEB635F1D4CCCCC334 /* Pods-KKIntroduceView_Tests.debug.xcconfig */,
 				6DD3D9A8A1E7B0A6313E872B /* Pods-KKIntroduceView_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -258,6 +257,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -497,6 +497,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KKIntroduceView/KKIntroduceView-Prefix.pch";
 				INFOPLIST_FILE = "KKIntroduceView/KKIntroduceView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -513,6 +514,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KKIntroduceView/KKIntroduceView-Prefix.pch";
 				INFOPLIST_FILE = "KKIntroduceView/KKIntroduceView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

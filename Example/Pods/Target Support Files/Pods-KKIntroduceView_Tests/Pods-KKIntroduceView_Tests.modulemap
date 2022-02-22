@@ -1,0 +1,6 @@
+framework module Pods_KKIntroduceView_Tests {
+  umbrella header "Pods-KKIntroduceView_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
