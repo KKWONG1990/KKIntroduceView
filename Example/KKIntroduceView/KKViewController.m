@@ -18,13 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
-    
+
     KKIntroduceItem * item0 = [[KKIntroduceItem alloc] init];
     item0.bgImage = [UIImage imageNamed:@"bg1"];
     item0.image = [UIImage imageNamed:@"title1"];
     item0.title = @"亲情家庭";
     item0.desc = @"邀请进入家庭，健康守护,邀请进入家庭，健康守护,邀请进入家庭，健康守护";
-    
+
     KKIntroduceItem * item1 = [[KKIntroduceItem alloc] init];
     item1.bgImage = [UIImage imageNamed:@"bg2"];
     item1.image = [UIImage imageNamed:@"title2"];
@@ -34,19 +34,19 @@
         NSForegroundColorAttributeName : UIColor.redColor,
         NSParagraphStyleAttributeName : [self style],
     }];
-    
+
     KKIntroduceItem * item2 = [[KKIntroduceItem alloc] init];
     item2.bgImage = [UIImage imageNamed:@"bg3"];
     item2.image = [UIImage imageNamed:@"title3"];
     item2.title = @"健康咨询";
     item2.desc = @"花五分钟阅读，做健康达人,花五分钟阅读，做健康达人,花五分钟阅读，做健康达人,花五分钟阅读，做健康达人";
-    
+
     KKIntroduceItem * item3 = [[KKIntroduceItem alloc] init];
     item3.bgImage = [UIImage imageNamed:@"bg4"];
     item3.image = [UIImage imageNamed:@"title4"];
     item3.title = @"健康数据";
     item3.desc = @"随时掌握家人健康情况";
-    
+
     self.introduceView = [[KKIntroduceView alloc] initWithFrame:self.view.bounds items:@[item0, item1, item2, item3]];
     self.introduceView.delegate = self;
     [self.introduceView showInView:self.view];
@@ -120,8 +120,8 @@
     return CGRectMake(15 + CGRectGetWidth(introduceView.scrollView.frame) * idx, CGRectGetHeight(introduceView.scrollView.frame) - 200, CGRectGetWidth(introduceView.scrollView.frame) - 30, size.height);
 }
 
-- (CGRect)introduceView:(KKIntroduceView *)introduceView setRectForImageView:(UIImageView *)imageView index:(NSUInteger)index {
-    CGFloat x = CGRectGetWidth(introduceView.scrollView.frame) * index + (CGRectGetWidth(introduceView.scrollView.frame) / 2 - imageView.image.size.width / 2);
+- (CGRect)introduceView:(KKIntroduceView *)introduceView setRectForImageView:(UIImageView *)imageView idx:(NSUInteger)idx {
+    CGFloat x = CGRectGetWidth(introduceView.scrollView.frame) * idx + (CGRectGetWidth(introduceView.scrollView.frame) / 2 - imageView.image.size.width / 2);
     return CGRectMake(x, 80, imageView.image.size.width, imageView.image.size.height);
 }
 

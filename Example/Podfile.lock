@@ -1,5 +1,5 @@
 PODS:
-  - KKIntroduceView (1.0.0)
+  - KKIntroduceView (1.0.1)
 
 DEPENDENCIES:
   - KKIntroduceView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  KKIntroduceView: 929e66e524ab9b3a79ec0a0171dfec2b45e8d462
+  KKIntroduceView: fc7d214b26a4a46cef3e8aec31232d8115962214
 
 PODFILE CHECKSUM: e09d3e61ff1b0ff036167ad7408fb141f8f6ad2b
 
