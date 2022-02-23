@@ -194,7 +194,7 @@
 
 
 - (void)updateBackgroundImageWithNextPage:(BOOL)nextPage {
-    if (self.backgroundImages.count < 1) return;
+    if (self.backgroundImages.count <= 1) return;
     if (self.idx >= self.backgroundImages.count - 1) return;
     
     CGFloat alpha = 0.0;
@@ -220,6 +220,7 @@
 }
 
 - (void)switchShowBackgroundImageWhenScrollViewDidEndDeceleratingWithIdx:(NSUInteger)idx {
+    if (self.backgroundImages.count <= 1) return;
     self.showBackgroundImageView.image = [self.backgroundImages objectAtIndex:idx];
     self.backgroundImageView.alpha = 0.0;
     self.showBackgroundImageView.alpha = 1.0;
@@ -253,9 +254,8 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-
     if (CGPointEqualToPoint(_currentContentOffset, scrollView.contentOffset)) {
-        return;;
+        return;
     }
     
     NSUInteger idx = scrollView.contentOffset.x / CGRectGetWidth(scrollView.frame);
@@ -321,8 +321,8 @@
 - (void)setupImageViewItemFrame {
     [self.imageViews enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, UIImageView * _Nonnull obj, BOOL * _Nonnull stop) {
         NSUInteger idx = [key integerValue];
-        if (self.delegate && [self.delegate respondsToSelector:@selector(introduceView:setRectForImageView:index:)]) {
-            obj.frame =  [self.delegate introduceView:self setRectForImageView:obj index:idx];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(introduceView:setRectForImageView:idx:)]) {
+            obj.frame =  [self.delegate introduceView:self setRectForImageView:obj idx:idx];
         } else {
             obj.frame = CGRectMake(self.bounds.size.width * idx, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
         }

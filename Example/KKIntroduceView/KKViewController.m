@@ -23,7 +23,7 @@
     item0.bgImage = [UIImage imageNamed:@"bg1"];
     item0.image = [UIImage imageNamed:@"title1"];
     item0.title = @"亲情家庭";
-    item0.desc = @"邀请进入家庭，健康守护,邀请进入家庭，健康守护,邀请进入家庭，健康守护";
+    item0.desc = @"邀请进入家庭，健康守护家人";
 
     KKIntroduceItem * item1 = [[KKIntroduceItem alloc] init];
     item1.bgImage = [UIImage imageNamed:@"bg2"];

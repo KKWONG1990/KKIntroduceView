@@ -51,9 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGRect)setRectForPageControlInIntroduceView:(KKIntroduceView *)introduceView;
 
 /// 设置photoImte的frame
-/// @param index 下标
+/// @param idx 下标
 /// @param introduceView KKIntroduceView
-- (CGRect)introduceView:(KKIntroduceView *)introduceView setRectForImageView:(UIImageView *)imageView index:(NSUInteger)index;
+- (CGRect)introduceView:(KKIntroduceView *)introduceView setRectForImageView:(UIImageView *)imageView idx:(NSUInteger)idx;
 
 /// 设置标题标签的位置大小
 /// @param introduceView KKIntroduceView
