@@ -97,8 +97,8 @@
     self.backgroundImageView = backgroundImageView;
     self.showBackgroundImageView = showBackgroundImageView;
     
-    if (self.imageViews.count) {
-        self.showBackgroundImageView.image = [self backgroundImages].firstObject;
+    if (self.backgroundImages.count) {
+        self.showBackgroundImageView.image = self.backgroundImages.firstObject;
     }
     
     UIScrollView * scrollView = [[UIScrollView alloc] init];
