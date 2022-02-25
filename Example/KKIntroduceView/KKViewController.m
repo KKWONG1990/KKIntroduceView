@@ -69,7 +69,6 @@
 
 - (void)introduceView:(KKIntroduceView *)introduceView didAppearPageWithIdx:(NSUInteger)idx {
     NSLog(@"didAppearPageWithIdx = %ld",(long)idx);
-
 }
 
 - (void)introduceView:(KKIntroduceView *)introduceView willDisappearPageWithIdx:(NSUInteger)idx {
@@ -77,22 +76,22 @@
 }
 
 - (UIButton *)introduceView:(KKIntroduceView *)introduceView buttonForPageInScrollViewWithIdx:(NSUInteger)idx {
+    UIButton * btn = [[UIButton alloc] init];
+    btn.backgroundColor = UIColor.brownColor;
+    [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    btn.layer.cornerRadius = 25;
+    btn.tag = idx;
+    [btn addTarget:self action:@selector(pageAction:) forControlEvents:UIControlEventTouchUpInside];
     if (idx == 3) {
-        UIButton * btn = [[UIButton alloc] init];
         [btn setTitle:@"开启新版之旅" forState:UIControlStateNormal];
-        btn.backgroundColor = UIColor.brownColor;
-        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        btn.layer.cornerRadius = 25;
-        return btn;
+    } else {
+        [btn setTitle:@"下一页" forState:UIControlStateNormal];
     }
-    return nil;
+    return btn;
 }
 
 - (CGRect)introduceView:(KKIntroduceView *)introduceView setRectForButtonWithIdx:(NSUInteger)idx {
-    if (idx == 3) {
-        return CGRectMake(idx * CGRectGetWidth(introduceView.frame) + 50, CGRectGetHeight(introduceView.frame) - 80, CGRectGetWidth(introduceView.frame) - 100, 50);
-    }
-    return CGRectZero;
+    return CGRectMake(idx * CGRectGetWidth(introduceView.frame) + 50, CGRectGetHeight(introduceView.frame) - 80, CGRectGetWidth(introduceView.frame) - 100, 50);
 }
 
 - (CGRect)setRectForPageControlInIntroduceView:(KKIntroduceView *)introduceView {
@@ -125,6 +124,15 @@
     return CGRectMake(x, 80, imageView.image.size.width, imageView.image.size.height);
 }
 
+- (void)pageAction:(UIButton *)sender {
+    if (sender.tag == 3) {
+        [self.introduceView hide];
+    } else {
+        [self.introduceView.scrollView setContentOffset:CGPointMake((sender.tag + 1) * CGRectGetWidth(self.introduceView.scrollView.frame), 0) animated:YES];
+    }
+    
+    
+}
 
 
 @end

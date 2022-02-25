@@ -22,6 +22,9 @@
 @property (nonatomic, strong) UIPageControl * pageControl;
 @end
 
+NSString * const ContentOffsetKeyPath = @"contentOffset";
+
+
 @implementation KKIntroduceView
 {
     CGPoint _currentContentOffset;
@@ -172,6 +175,7 @@
 }
 
 - (void)hide {
+    [self removeObservers];
     [self removeFromSuperview];
 }
 
@@ -183,12 +187,43 @@
     
     [self initializeDatasouce];
     [self setupUI];
+    [self addObservers];
     [self willAppearPageWithIdx:self.idx];
     [view addSubview:self];
     [self didAppearPageWithIdx:self.idx];
     self.parentView = view;
 }
 
+- (void)addObservers {
+    [self.scrollView addObserver:self forKeyPath:ContentOffsetKeyPath options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)removeObservers {
+    [self.scrollView removeObserver:self forKeyPath:ContentOffsetKeyPath context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:ContentOffsetKeyPath]) {
+        
+        CGPoint newContentOffset = [[change valueForKey:NSKeyValueChangeNewKey] CGPointValue];
+        
+        //如果相等，则没有变化不必更新
+        if (_currentContentOffset.x == newContentOffset.x) {
+            return;
+        }
+        
+        //如果当前偏移量刚好是某一页的偏移量, 则代表到了新的一页
+        if (newContentOffset.x == self.idx * CGRectGetWidth(self.scrollView.frame)) {
+            [self didAppearPageWithIdx:self.idx];
+            [self switchShowBackgroundImageWhenScrollViewDidEndDeceleratingWithIdx:self.idx];
+            _currentContentOffset = newContentOffset;
+            if (self.pageControl) {
+                self.pageControl.currentPage = self.idx;
+            }
+        }
+    }
+    
+}
 
 - (void)updateBackgroundImageWithNextPage:(BOOL)nextPage {
     if (self.backgroundImages.count <= 1) return;
@@ -226,17 +261,14 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if (scrollView.contentOffset.x < 0) return;
-    if (scrollView.contentOffset.x > scrollView.contentSize.width) return;
-    
+    if (scrollView.contentOffset.x <= 0) return;
+    if (scrollView.contentOffset.x >= scrollView.contentSize.width) return;
     if (scrollView.contentOffset.x > _currentContentOffset.x) {
         //向左滑,下一页
-//        NSLog(@"下一页");
         [self updateBackgroundImageWithNextPage:YES];
         [self updatePageStateWidhNextPage:YES];
     } else {
         //向右滑，上一页
-//        NSLog(@"上一页");
         [self updateBackgroundImageWithNextPage:NO];
         [self updatePageStateWidhNextPage:NO];
     }
@@ -245,27 +277,19 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.x < 0) return;
-    if (scrollView.contentOffset.x > scrollView.contentSize.width) return;
+    if (scrollView.contentOffset.x <= 0) return;
+    if (scrollView.contentOffset.x >= scrollView.contentSize.width) return;
     _currentContentOffset = scrollView.contentOffset;
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (CGPointEqualToPoint(_currentContentOffset, scrollView.contentOffset)) {
-        return;
-    }
-    
-    NSUInteger idx = scrollView.contentOffset.x / CGRectGetWidth(scrollView.frame);
-    [self switchShowBackgroundImageWhenScrollViewDidEndDeceleratingWithIdx:idx];
-    [self didAppearPageWithIdx:idx];
-    self.idx = idx;
-    _currentContentOffset = scrollView.contentOffset;
-    
-    if (self.isShowPageControl) {
-        self.pageControl.currentPage = self.idx;
-    }
-    
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    if (CGPointEqualToPoint(_currentContentOffset, scrollView.contentOffset)) {
+//        return;
+//    }
+////    NSUInteger idx = scrollView.contentOffset.x / CGRectGetWidth(scrollView.frame);
+////    [self switchShowBackgroundImageWhenScrollViewDidEndDeceleratingWithIdx:idx];
+//
+//}
 
 #pragma mark - 创建子视图
 - (nullable UIImageView *)createImageViewWithItem:(KKIntroduceItem *)item {
