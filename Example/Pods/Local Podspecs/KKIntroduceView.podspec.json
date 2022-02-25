@@ -1,6 +1,6 @@
 {
   "name": "KKIntroduceView",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "summary": "App介绍页、欢迎页视图",
   "description": "KKIntroduceView支持设置背景图，页面图片，标题，描述，按钮。可以通过代理方法设置标题描述按钮的样式，提供设置页面控件的位置大小代理方法，实现自定义位置大小。",
   "homepage": "https://github.com/KKWONG1990/KKIntroduceView",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/KKWONG1990/KKIntroduceView.git",
-    "tag": "1.0.1"
+    "tag": "1.0.2"
   },
   "platforms": {
     "ios": "9.0"
