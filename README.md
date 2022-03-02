@@ -17,7 +17,7 @@ KKIntroduceView is available through [CocoaPods](https://cocoapods.org). To inst
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'KKIntroduceView', '~> 1.0.3'
+pod 'KKIntroduceView', '~> 1.0.4'
 ```
 
 ## Author
@@ -41,3 +41,6 @@ KKIntroduceView is available under the MIT license. See the LICENSE file for mor
 ### 1.0.3
 - 增加设置contentOffset翻页功能
 - 一些优化
+
+### 1.0.4
+- 增加showActionExample属性，用于是否展示示例

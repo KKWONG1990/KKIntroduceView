@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSDictionary<NSNumber * , UILabel *> * descLabels;
 @property (nonatomic, strong) NSDictionary<NSNumber *, UIButton *> * buttons;
 @property (nonatomic, strong) UIPageControl * pageControl;
+@property (nonatomic, strong) CABasicAnimation * animation;
 @end
 
 NSString * const ContentOffsetKeyPath = @"contentOffset";
@@ -138,6 +139,10 @@ NSString * const ContentOffsetKeyPath = @"contentOffset";
         [self addSubview:self.pageControl];
         
     }
+    
+    if (self.isShowActionExample) {
+        scrollView.userInteractionEnabled = !self.isShowActionExample;
+    }
 }
 
 - (void)layoutSubviews {
@@ -192,6 +197,40 @@ NSString * const ContentOffsetKeyPath = @"contentOffset";
     [view addSubview:self];
     [self didAppearPageWithIdx:self.idx];
     self.parentView = view;
+    [self showUserActionExample];
+    
+}
+
+- (void)showUserActionExample {
+    
+    if (self.isShowActionExample) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:1.0 animations:^{
+                [self.scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.scrollView.frame) / 8, 0) animated:NO];
+            }];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:1.0 animations:^{
+                [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+            }];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:1.0 animations:^{
+                [self.scrollView setContentOffset:CGPointMake(CGRectGetWidth(self.scrollView.frame) / 8, 0) animated:NO];
+            }];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:1.0 animations:^{
+                [self.scrollView setContentOffset:CGPointMake(0, 0) animated:NO];
+            } completion:^(BOOL finished) {
+                self.showActionExample = NO;
+                self.scrollView.userInteractionEnabled = !self.isShowActionExample;
+            }];
+        });
+    }
 }
 
 - (void)addObservers {
@@ -260,7 +299,6 @@ NSString * const ContentOffsetKeyPath = @"contentOffset";
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
     if (scrollView.contentOffset.x <= 0) return;
     if (scrollView.contentOffset.x >= scrollView.contentSize.width) return;
     if (scrollView.contentOffset.x > _currentContentOffset.x) {
@@ -281,15 +319,6 @@ NSString * const ContentOffsetKeyPath = @"contentOffset";
     if (scrollView.contentOffset.x >= scrollView.contentSize.width) return;
     _currentContentOffset = scrollView.contentOffset;
 }
-
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    if (CGPointEqualToPoint(_currentContentOffset, scrollView.contentOffset)) {
-//        return;
-//    }
-////    NSUInteger idx = scrollView.contentOffset.x / CGRectGetWidth(scrollView.frame);
-////    [self switchShowBackgroundImageWhenScrollViewDidEndDeceleratingWithIdx:idx];
-//
-//}
 
 #pragma mark - 创建子视图
 - (nullable UIImageView *)createImageViewWithItem:(KKIntroduceItem *)item {

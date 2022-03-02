@@ -128,6 +128,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 当前下标
 @property (nonatomic, readonly) NSUInteger idx;
 
+/// 是否显示操作示例，默认NO
+@property (nonatomic, assign, getter=isShowActionExample) BOOL showActionExample;
+
 /// 展示window
 - (void)show;
 
